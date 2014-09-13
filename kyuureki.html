@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<title>kyuureki.js demo</title>
+<link rel=license href="https://github.com/wakaba/js-kyuureki/blob/master/LICENSE" title="Public Domain">
+
+<h1><code>kyuureki.js</code> demo</h1>
+
+<ul>
+  <li><a href=kyuureki.js><code>kyuureki.js</code>
+  <li><a href="https://github.com/wakaba/js-kyuureki#readme">Document</a>
+  <li><a href="https://github.com/wakaba/js-kyuureki">GitHub - js-kyuureki</a>
+</ul>
+
+<script src=kyuureki.js></script>
+
+<section id=g2q>
+<h1>Gregorian -> Kyuureki</h1>
+
+<form>
+  <p><label><strong>Gregorian</strong>: <input type=date name=in oninput="
+    var d = this.value.split (/-/);
+    var r = Kyuureki.gregorianToKyuureki (parseInt (d[0], 10), parseInt (d[1], 10), parseInt (d[2], 10));
+    elements.outY.value = r[0] || '?';
+    elements.outM.value = r[1] || '?';
+    elements.outMLeap.value = r[2] ? 'leap' : '';
+    elements.outD.value = r[3] || '?';
+  " min=0445-01-25 max=2101-01-28 required></label>
+  <p><strong>Kyuureki</strong>:
+    <label>Year <output name=outY>?</output></label> /
+    <label>Month <output name=outM>?</output></label>
+                 <output name=outMLeap></output> /
+    <label>Day <output name=outD>?</output></label>
+</form>
+
+</section>
+
+<section id=q2g>
+<h1>Kyuureki -> Gregorian</h1>
+
+<form oninput="
+  var r = Kyuureki.kyuurekiToGregorian (elements.inY.valueAsNumber, elements.inM.valueAsNumber, elements.inMLeap.checked, elements.inD.valueAsNumber);
+  elements.outY.value = r[0] || '?';
+  elements.outM.value = r[1] || '?';
+  elements.outD.value = r[2] || '?';
+" onclick=" this.oninput.apply (this, arguments) ">
+  <p><strong>Kyuureki</strong>:
+    <label>Year <input type=number name=inY min=445 max=2100 step=1 required></label> /
+    <label>Month <input type=number name=inM min=1 max=12 step=1 required></label>
+                 <label><input type=checkbox name=inMLeap> leap</label> /
+    <label>Day <input type=number name=inD min=1 max=30 step=1 required></label>
+
+  <p><strong>Gregorian</strong>:
+    <label>Year <output name=outY>?</output></label> /
+    <label>Month <output name=outM>?</output></label> /
+    <label>Day <output name=outD>?</output></label>
+</form>
+
+</section>
