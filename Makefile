@@ -7,7 +7,7 @@ clean:
 	rm -fr local/*.json local/*.out
 
 updatenightly: clean impl
-	$(GIT) add lib
+	$(GIT) add *.js
 
 deps:
 
