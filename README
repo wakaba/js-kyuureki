@@ -1,9 +1,13 @@
 kyuureki.js
 ~~~~~~~~~~~
 
+Usage:
+
   <script src=kyuureki.js></script>
   [y, m, mLeap, $d] = Kyuureki.gregorianToKyuureki (2014, 9, 12);
   [y, m, d] = Kyuureki.kyuurekiToGregorian (2014, 8, false, 19);
+
+Demo: <https://rawgit.com/wakaba/js-kyuureki/master/kyuureki.html>
 
 The |kyuureki.js| script provides two functions to convert a Gregorian
 calendar date into a Kyuureki (Japanese classic calendar) date, and
