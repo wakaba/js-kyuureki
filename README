@@ -60,6 +60,8 @@ SuikaWiki:旧暦 <http://wiki.suikawiki.org/n/%E6%97%A7%E6%9A%A6>.
 data-locale:calendar/kyuureki-*
 <https://github.com/manakai/data-locale/blob/master/doc/calendar-kyuureki.txt>.
 
+perl-kyuureki <https://github.com/wakaba/perl-kyuureki>.
+
 日本暦日原典, 内田正男, 1992 (第4版).
 
 * Author
