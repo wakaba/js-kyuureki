@@ -1,0 +1,71 @@
+kyuureki.js
+~~~~~~~~~~~
+
+  <script src=kyuureki.js></script>
+  [y, m, mLeap, $d] = Kyuureki.gregorianToKyuureki (2014, 9, 12);
+  [y, m, d] = Kyuureki.kyuurekiToGregorian (2014, 8, false, 19);
+
+The |kyuureki.js| script provides two functions to convert a Gregorian
+calendar date into a Kyuureki (Japanese classic calendar) date, and
+vice versa.
+
+The Kyuureki is the calendar system used in Japan before calendar
+reform at January 1, Meiji 6 (1873).
+
+This module supports the dates between Gregorian 0445-01-25 (Kyuureki
+0445-01-01) and Gregorian 2101-01-28 (Kyuureki 2100-12-29).
+
+A day is identified in Kyuureki by year, month, and day numbers.
+There are 12 or 13 months in a year, 12 of them are identified by
+numbers 1-12.  The other month is referred to as a "leap month", using
+the number of the previous month.  For example, year 2012 has "leap 3"
+month between months 3 and 4.  There are 29 or 30 days in a month,
+identified by numbers 1-30.
+
+There are these functions:
+
+[y, m, mLeap, d] = Kyuureki.gregorianToKyuureki (y, m, d)
+
+  Convert a date in Gregorian calendar into a date in Kyuureki.
+
+  The arguments must be the year, month, and day numbers.  Note that
+  January is month |1|, not |0|.
+
+  It returns an |Array| of the year number, the month number, whether
+  the month is a leap month or not, and the day number.
+
+  If the input is outside of the range, an |Array| of four |null|
+  values is returned.
+
+[y, m, d] = Kyuureki.kyuurekiToGregorian (y, m, mLeap, d)
+
+  Convert a date in Kyuureki into a date in Gregorian calendar.
+
+  The arguments must be the year number, the month number, whether the
+  month is a leap month or not, and the day number.
+
+  It returns an |Array| of the year, month, and day numbers.  Note
+  that January is month |1|, not |0|.
+
+  If the input is outside of the range, an |Array| of three |null|
+  values is returned.
+
+The input must be a valid Gregorian or Kyuureki date.  Otherwise an
+exception might be thrown, or an invalid date might be returned.
+
+* See also
+
+SuikaWiki:旧暦 <http://wiki.suikawiki.org/n/%E6%97%A7%E6%9A%A6>.
+
+data-locale:calendar/kyuureki-*
+<https://github.com/manakai/data-locale/blob/master/doc/calendar-kyuureki.txt>.
+
+日本暦日原典, 内田正男, 1992 (第4版).
+
+* Author
+
+Wakaba <wakaba@suikawiki.org>.
+
+* License
+
+Public Domain.
