@@ -42,6 +42,7 @@ $Data->{kyuureki_year_to_gregorian_date} = join '', map {
   }
 } @{$Data->{kyuureki_year_to_gregorian_date}};
 
+$Data->{kyuureki_year_to_leap_month}->[$LastYear + 1 - $FirstYear] ||= 0;
 $Data->{kyuureki_year_to_leap_month} = join '', map { sprintf '%X', ($_ || 0) } @{$Data->{kyuureki_year_to_leap_month}};
 
 for (sort { $a cmp $b } keys %{$Data->{kyuureki_month_to_day_number}}) {
