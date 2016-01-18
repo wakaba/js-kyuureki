@@ -2,8 +2,8 @@ use strict;
 use warnings;
 use JSON::PS;
 
-my $FirstYear = 445;
-my $LastYear = 2100;
+my $FirstYear;
+my $LastYear;
 
 my $Data = {};
 
@@ -15,19 +15,21 @@ for (split /\x0D?\x0A/, scalar <$map_file>) {
   if (/^([\d'-]+)\t([\d'-]+-01)$/) {
     my $G = $1;
     my $Q = $2;
-    if ($Q =~ /^([0-9]+)-01-01$/) {
+    if ($Q =~ /^(-?[0-9]+)-01-01$/) {
+      $FirstYear //= 0+$1;
+      $LastYear = 0+$1;
       $Data->{kyuureki_year_to_gregorian_date}->[$1 - $FirstYear] = $G;
     }
   }
   if (/^([\d'-]+)\t(([\d'-]+)-[0-9]+)$/) {
     $Data->{kyuureki_month_to_day_number}->{$3}++;
-    if ($3 =~ /^([0-9]+)-([0-9]+)'$/) {
+    if ($3 =~ /^(-?[0-9]+)-([0-9]+)'$/) {
       $Data->{kyuureki_year_to_leap_month}->[$1 - $FirstYear] = $2;
     }
     $last_seireki_date = $1;
   }
 }
-if ($last_seireki_date =~ /^(\d+)-(\d+)-(\d+)$/) {
+if ($last_seireki_date =~ /^(-?\d+)-(\d+)-(\d+)$/) {
   $Data->{kyuureki_year_to_gregorian_date}->[$1 - $FirstYear]
       = sprintf '%04d-%02d-%02d', $1, $2, $3+1;
 }
@@ -46,7 +48,7 @@ $Data->{kyuureki_year_to_leap_month}->[$LastYear + 1 - $FirstYear] ||= 0;
 $Data->{kyuureki_year_to_leap_month} = join '', map { sprintf '%X', ($_ || 0) } @{$Data->{kyuureki_year_to_leap_month}};
 
 for (sort { $a cmp $b } keys %{$Data->{kyuureki_month_to_day_number}}) {
-  /^([0-9]+)-/ or die $_;
+  /^(-?[0-9]+)-/ or die $_;
   my $year = $1;
   my $value = $Data->{kyuureki_month_to_day_number}->{$_};
   my $vector = $Data->{kyuureki_year_to_month_types}->[$year - $FirstYear];
