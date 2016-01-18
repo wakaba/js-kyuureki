@@ -29,8 +29,8 @@ local/map.txt:
 
 test: test-deps
 	$(PHANTOMJS) t/test1.js
-	diff -u local/map.txt local/test1.out > local/test1.diff
+	diff -u local/map.txt local/test1.out
 	$(PHANTOMJS) t/test2.js
-	diff -u local/map.txt local/test2.out > local/test2.diff
+	diff -u local/map.txt local/test2.out
 
 test-deps: impl
