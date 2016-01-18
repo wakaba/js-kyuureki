@@ -13,7 +13,7 @@ content.split (/\u000D?\u000A/).forEach (function (line) {
     result.negative = result[0] < 0;
     if (result.negative) result[0] = -result[0];
     var line = (result.negative ? "-" : "") +
-        (result[0] < 1000 ? "0" + result[0] : result[0]) + "-" +
+        (result[0] < 10 ? "000" + result[0] : result[0] < 100 ? "00" + result[0] : result[0] < 1000 ? "0" + result[0] : result[0]) + "-" +
         (result[1] < 10 ? "0" + result[1] : result[1]) + "-" +
         (result[2] < 10 ? "0" + result[2] : result[2]) + "\t" +
         m[1] + "-" + m[2] + m[3] + "-" + m[4] + "\n";
